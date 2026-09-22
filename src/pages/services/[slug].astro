@@ -1,0 +1,101 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CTASection from "../../components/CTASection.astro";
+import Icon from "../../components/Icon.astro";
+import { services } from "../../data/services";
+import { site } from "../../data/site";
+
+export function getStaticPaths() {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+const otherServices = services.filter((s) => s.slug !== service.slug);
+---
+
+<Layout title={service.title} description={service.summary}>
+  <section class="relative overflow-hidden pt-20 pb-16 sm:pt-28">
+    <div class="glow -top-24 left-1/4 h-80 w-[32rem] bg-gold-500/20"></div>
+    <div class="container-page relative">
+      <a href="/services" class="inline-flex items-center gap-2 text-sm text-white/50 hover:text-gold-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5 5-5m-5 5h12" />
+        </svg>
+        All Services
+      </a>
+
+      <div class="mt-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-gold-400/10 text-gold-300">
+        <Icon path={service.icon} class="h-7 w-7" />
+      </div>
+      <h1 class="mt-6 max-w-2xl text-4xl font-semibold text-white sm:text-5xl">{service.title}</h1>
+      <p class="mt-6 max-w-2xl text-base leading-relaxed text-white/60 sm:text-lg">{service.summary}</p>
+      <div class="mt-10">
+        <a href="/contact" class="btn-primary">Discuss Your Project</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-page">
+      <h2 class="text-2xl font-semibold text-white sm:text-3xl">What's included</h2>
+      <div class="mt-10 grid gap-4 sm:grid-cols-2">
+        {
+          service.features.map((feature) => (
+            <div class="glass-card flex items-center gap-4 p-5">
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gold-400/10 text-gold-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+              <span class="text-sm text-white/80">{feature}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-page">
+      <h2 class="text-2xl font-semibold text-white sm:text-3xl">How we deliver it</h2>
+      <div class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          service.process.map((step, i) => (
+            <div>
+              <p class="font-display text-4xl font-bold text-white/10">{String(i + 1).padStart(2, "0")}</p>
+              <h3 class="mt-2 text-lg font-semibold text-white">{step.title}</h3>
+              <p class="mt-2 text-sm text-white/60">{step.detail}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-page">
+      <h2 class="text-2xl font-semibold text-white sm:text-3xl">Other services</h2>
+      <div class="mt-10 grid gap-6 sm:grid-cols-3">
+        {
+          otherServices.map((s) => (
+            <a href={`/services/${s.slug}`} class="glass-card p-6">
+              <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-gold-400/10 text-gold-300">
+                <Icon path={s.icon} class="h-5 w-5" />
+              </div>
+              <h3 class="mt-4 text-base font-semibold text-white">{s.title}</h3>
+              <p class="mt-1 text-sm text-white/50">{s.short}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title={`Ready to start your ${service.title.toLowerCase()} project?`}
+    description={`Tell us about your goals — we'll map out how ${site.name} can help.`}
+  />
+</Layout>

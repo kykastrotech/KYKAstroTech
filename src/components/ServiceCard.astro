@@ -1,0 +1,26 @@
+---
+import Icon from "./Icon.astro";
+import type { Service } from "../data/services";
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+---
+
+<a href={`/services/${service.slug}`} class="glass-card group flex flex-col gap-5 p-8">
+  <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gold-400/10 text-gold-300">
+    <Icon path={service.icon} />
+  </div>
+  <div>
+    <h3 class="text-lg font-semibold text-white">{service.title}</h3>
+    <p class="mt-2 text-sm leading-relaxed text-white/60">{service.short}</p>
+  </div>
+  <span class="mt-auto inline-flex items-center gap-2 text-sm font-medium text-gold-300 opacity-0 transition group-hover:opacity-100">
+    Learn more
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0-4 4m4-4H3" />
+    </svg>
+  </span>
+</a>

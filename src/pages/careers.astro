@@ -1,0 +1,90 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
+import { site } from "../data/site";
+
+const perks = [
+  {
+    title: "Remote-first",
+    detail: "Work from anywhere — we care about output, not office hours.",
+    icon: "M12 21c4.97-4.97 7-8.23 7-11.5A7 7 0 0 0 5 9.5C5 12.77 7.03 16.03 12 21Z",
+  },
+  {
+    title: "Real ownership",
+    detail: "Small team, big scope — you'll ship things that matter, fast.",
+    icon: "M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z",
+  },
+  {
+    title: "Always learning",
+    detail: "We build with modern tools and give you room to explore them.",
+    icon: "M12 2a5 5 0 0 0-5 5v1a4 4 0 0 0-2 3.46V15a4 4 0 0 0 4 4h1a3 3 0 0 0 6 0h1a4 4 0 0 0 4-4v-3.54A4 4 0 0 0 17 8V7a5 5 0 0 0-5-5Z",
+  },
+  {
+    title: "Direct impact",
+    detail: "No layers of bureaucracy between your work and the outcome.",
+    icon: "M13 2 3 14h8l-1 8 10-12h-8l1-8Z",
+  },
+];
+
+const areas = ["Software Development", "Mobile App Development", "UI/UX Design", "AI & Automation"];
+---
+
+<Layout title="Careers" description={`Careers at ${site.legalName} — join a small, senior team building websites, apps, and AI-powered software.`}>
+  <section class="relative overflow-hidden pt-20 pb-16 sm:pt-28">
+    <div class="glow -top-24 right-1/4 h-80 w-[32rem] bg-gold-500/20"></div>
+    <div class="container-page relative">
+      <span class="eyebrow">Careers</span>
+      <h1 class="mt-6 max-w-2xl text-4xl font-semibold text-white sm:text-5xl">
+        Help us build <span class="gold-text">ideas into technology</span>
+      </h1>
+      <p class="mt-6 max-w-2xl text-base leading-relaxed text-white/60 sm:text-lg">
+        We're a small, growing team building real products for real clients. If you'd rather
+        own outcomes than tickets, we'd like to hear from you.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-page grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        perks.map((perk) => (
+          <div class="glass-card p-8">
+            <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gold-400/10 text-gold-300">
+              <Icon path={perk.icon} />
+            </div>
+            <h3 class="mt-5 text-lg font-semibold text-white">{perk.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-white/60">{perk.detail}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-page">
+      <div class="glass-card p-10 sm:p-14">
+        <span class="eyebrow">Open Applications</span>
+        <h2 class="mt-4 text-2xl font-semibold text-white sm:text-3xl">
+          No fixed openings right now — we still want to meet you
+        </h2>
+        <p class="mt-4 max-w-2xl text-sm leading-relaxed text-white/60">
+          We hire in bursts, around real project needs, across these areas. Send us your work
+          and a short note on what you'd want to build — we keep every strong application on
+          file for when a role opens up.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          {
+            areas.map((area) => (
+              <span class="rounded-full border border-white/10 px-4 py-2 text-sm text-white/70">{area}</span>
+            ))
+          }
+        </div>
+
+        <a href={`mailto:${site.email}?subject=Application%20-%20KYK%20AstroTech`} class="btn-primary mt-10 inline-flex">
+          Email Your Application
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

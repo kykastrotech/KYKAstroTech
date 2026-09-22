@@ -1,0 +1,112 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CTASection from "../components/CTASection.astro";
+import Icon from "../components/Icon.astro";
+import { site } from "../data/site";
+
+const values = [
+  {
+    title: "Innovation",
+    detail: "We stay close to modern tools and use them with intent, not for their own sake.",
+    icon: "M12 2a5 5 0 0 0-5 5v1a4 4 0 0 0-2 3.46V15a4 4 0 0 0 4 4h1a3 3 0 0 0 6 0h1a4 4 0 0 0 4-4v-3.54A4 4 0 0 0 17 8V7a5 5 0 0 0-5-5Z",
+  },
+  {
+    title: "Reliability",
+    detail: "Clear timelines, honest scope, and code that holds up after launch.",
+    icon: "M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z",
+  },
+  {
+    title: "Performance",
+    detail: "We treat speed and efficiency as features, not afterthoughts.",
+    icon: "M13 2 3 14h8l-1 8 10-12h-8l1-8Z",
+  },
+  {
+    title: "Your Growth Partner",
+    detail: "We think beyond the handoff — about what helps you grow next.",
+    icon: "M4 16l4-4 4 3 8-9m0 0h-5m5 0v5",
+  },
+];
+---
+
+<Layout title="About" description={`Learn about ${site.legalName} — our mission, values, and approach to building technology.`}>
+  <section class="relative overflow-hidden pt-20 pb-20 sm:pt-28">
+    <div class="glow -top-24 left-1/3 h-80 w-[32rem] bg-gold-500/20"></div>
+    <div class="container-page relative">
+      <span class="eyebrow">About Us</span>
+      <h1 class="mt-6 max-w-3xl text-4xl font-semibold text-white sm:text-5xl">
+        One team. One vision. <span class="gold-text">Endless possibilities.</span>
+      </h1>
+      <p class="mt-6 max-w-2xl text-base leading-relaxed text-white/60 sm:text-lg">
+        {site.legalName} is an IT company built to turn ideas into real, working technology.
+        We partner with founders and businesses to design, build, and maintain the websites,
+        apps, and software that run their operations — treating every engagement like it's
+        our own product.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-page grid gap-8 lg:grid-cols-2">
+      <div class="glass-card p-10">
+        <h2 class="font-display text-xl font-semibold text-gold-300">Our Mission</h2>
+        <p class="mt-4 text-sm leading-relaxed text-white/60">
+          To connect ideas with innovation — building solutions that empower businesses to work
+          smarter, grow faster, and scale confidently.
+        </p>
+      </div>
+      <div class="glass-card p-10">
+        <h2 class="font-display text-xl font-semibold text-gold-300">Our Vision</h2>
+        <p class="mt-4 text-sm leading-relaxed text-white/60">
+          To be a technology partner ambitious teams trust from the first prototype through
+          long-term growth — reliable, senior, and genuinely invested in the outcome.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-page">
+      <div class="mx-auto max-w-2xl text-center">
+        <span class="eyebrow">What We Stand For</span>
+        <h2 class="mt-4 text-3xl font-semibold text-white sm:text-4xl">Our values</h2>
+      </div>
+
+      <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          values.map((v) => (
+            <div class="glass-card p-8">
+              <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gold-400/10 text-gold-300">
+                <Icon path={v.icon} />
+              </div>
+              <h3 class="mt-5 text-lg font-semibold text-white">{v.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-white/60">{v.detail}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-page">
+      <div class="glass-card grid gap-10 p-10 sm:p-14 lg:grid-cols-[1fr_auto] lg:items-center">
+        <div>
+          <h2 class="text-2xl font-semibold text-white sm:text-3xl">Building in public, one product at a time</h2>
+          <p class="mt-4 max-w-xl text-sm leading-relaxed text-white/60">
+            Alongside client work, our team builds and ships our own products — including
+            AstroGuru, a digital astrology and numerology platform currently in development.
+            It's how we stay sharp on the same tools we use for clients.
+          </p>
+        </div>
+        <a href="https://astroguru.online" target="_blank" rel="noopener noreferrer" class="btn-secondary whitespace-nowrap">
+          See what we're building
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Let's build something worth showing off"
+    description="Tell us about your business and where you want technology to take it."
+  />
+</Layout>

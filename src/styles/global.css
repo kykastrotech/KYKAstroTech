@@ -1,0 +1,81 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/space-grotesk";
+
+@theme {
+  --font-display: "Space Grotesk Variable", "Space Grotesk", sans-serif;
+  --font-sans: "Inter Variable", "Inter", sans-serif;
+
+  --color-ink: #050507;
+  --color-ink-soft: #0b0b10;
+  --color-surface: #101018;
+  --color-surface-2: #16161f;
+
+  --color-gold-100: #f4e4bd;
+  --color-gold-200: #ecd6a0;
+  --color-gold-300: #e2c07f;
+  --color-gold-400: #cda45c;
+  --color-gold-500: #b8894a;
+  --color-gold-600: #8f6a37;
+  --color-gold-700: #6d5029;
+  --color-gold-800: #4d3a1e;
+  --color-gold-900: #3a2b17;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: #ece9e2;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background-color: var(--color-gold-400);
+    color: var(--color-ink);
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-10;
+  }
+
+  .gold-text {
+    @apply bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500 bg-clip-text text-transparent;
+  }
+
+  .glass-card {
+    @apply rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm transition duration-300;
+  }
+
+  .glass-card:hover {
+    @apply border-gold-400/40 bg-white/[0.05];
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-gold-300 to-gold-500 px-6 py-3 text-sm font-semibold text-ink shadow-[0_0_30px_-8px_rgba(205,164,92,0.7)] transition duration-300 hover:shadow-[0_0_40px_-6px_rgba(205,164,92,0.9)] hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-6 py-3 text-sm font-semibold text-white/90 backdrop-blur-sm transition duration-300 hover:border-gold-400/50 hover:text-gold-200;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-gold-400/30 bg-gold-400/5 px-4 py-1.5 text-xs font-semibold tracking-[0.2em] text-gold-300 uppercase;
+  }
+
+  .glow {
+    @apply pointer-events-none absolute rounded-full blur-[120px];
+  }
+}

@@ -1,0 +1,74 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CTASection from "../components/CTASection.astro";
+import { site } from "../data/site";
+---
+
+<Layout title="Portfolio" description={`Selected work from ${site.legalName}, including our in-house product AstroGuru.`}>
+  <section class="relative overflow-hidden pt-20 pb-16 sm:pt-28">
+    <div class="glow -top-24 left-1/4 h-80 w-[32rem] bg-gold-500/20"></div>
+    <div class="container-page relative">
+      <span class="eyebrow">Our Work</span>
+      <h1 class="mt-6 max-w-2xl text-4xl font-semibold text-white sm:text-5xl">
+        What we're <span class="gold-text">building</span>
+      </h1>
+      <p class="mt-6 max-w-2xl text-base leading-relaxed text-white/60 sm:text-lg">
+        We're a young team, and we'd rather show you real, active work than pad this page with
+        filler. Here's what we're building right now — your project could be the next one here.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-page">
+      <div class="glass-card relative overflow-hidden p-10 sm:p-14">
+        <div class="glow -top-16 -right-16 h-64 w-64 bg-gold-500/20"></div>
+        <div class="relative grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
+          <div>
+            <span class="inline-flex items-center gap-2 rounded-full border border-gold-400/30 bg-gold-400/5 px-3 py-1 text-xs font-semibold tracking-wide text-gold-300 uppercase">
+              In Active Development
+            </span>
+            <h2 class="mt-5 text-3xl font-semibold text-white">AstroGuru</h2>
+            <p class="mt-4 text-sm leading-relaxed text-white/60">
+              A digital astrology, palm reading &amp; numerology platform — designed and built
+              in-house by the {site.name} team, from product concept through engineering.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-2">
+              {["Web App", "Product Design", "Full-Stack Build"].map((tag) => (
+                <span class="rounded-full border border-white/10 px-3 py-1 text-xs text-white/60">{tag}</span>
+              ))}
+            </div>
+            <a
+              href="https://astroguru.online"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary mt-8 inline-flex"
+            >
+              Visit astroguru.online
+            </a>
+          </div>
+          <div class="flex items-center justify-center">
+            <div class="flex h-40 w-40 items-center justify-center rounded-full border border-gold-400/20 bg-gold-400/5 sm:h-52 sm:w-52">
+              <span class="font-display text-4xl font-semibold text-gold-300 sm:text-5xl">AG</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container-page">
+      <div class="glass-card p-10 text-center sm:p-16">
+        <h2 class="text-2xl font-semibold text-white sm:text-3xl">More case studies, coming soon</h2>
+        <p class="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/60">
+          As we ship client work, we'll feature it here with real outcomes — not stock photos.
+          If you want to be one of our first featured partners, let's talk.
+        </p>
+        <a href="/contact" class="btn-secondary mt-8 inline-flex">Become a Featured Partner</a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</Layout>
