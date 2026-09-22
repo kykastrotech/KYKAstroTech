@@ -31,3 +31,4 @@ This builds to plain static files (`npm run build` → `dist/`), so any static h
 - **Netlify** or **Vercel**: same build command/output directory, both have generous free tiers for static sites.
 
 No server, database, or paid plan required to run this site.
+"# KYK" 
