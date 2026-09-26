@@ -28,3 +28,5 @@ pnpm-debug.log*
 
 # raw reference screenshots (not used by the site; logo source lives in public/images/)
 brand-assets/
+
+site-upload.zip
