@@ -32,3 +32,4 @@ This builds to plain static files (`npm run build` → `dist/`), so any static h
 
 No server, database, or paid plan required to run this site.
 "# KYK" 
+"# KYKAstroTech" 
