@@ -1,0 +1,20 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { services } from "../data/services";
+---
+
+<Layout title="Page Not Found" description="The page you're looking for doesn't exist." noindex>
+  <section class="relative overflow-hidden py-32">
+    <div class="glow -top-24 left-1/2 h-80 w-[32rem] -translate-x-1/2 bg-gold-500/20"></div>
+    <div class="container-page relative text-center">
+      <p class="font-display text-7xl font-bold text-white/10">404</p>
+      <h1 class="mt-4 text-4xl font-semibold text-white">This page drifted out of orbit</h1>
+      <p class="mx-auto mt-4 max-w-md text-white/60">The link may be old or mistyped. Try one of these instead:</p>
+      <div class="mx-auto mt-10 flex max-w-2xl flex-wrap justify-center gap-3">
+        <a href="/" class="btn-primary">Home</a>
+        {services.map((s) => <a href={`/services/${s.slug}/`} class="btn-secondary">{s.title}</a>)}
+        <a href="/contact/" class="btn-secondary">Contact</a>
+      </div>
+    </div>
+  </section>
+</Layout>

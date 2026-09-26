@@ -1,15 +1,21 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { site } from "../data/site";
+import { services } from "../data/services";
 ---
 
-<Layout title="Contact" description={`Get in touch with ${site.legalName} to discuss your web, app, or software project.`}>
-  <section class="relative overflow-hidden pt-20 pb-16 sm:pt-28">
+<Layout
+  title="Contact Us — Get a Free Website or App Quote"
+  description={`Contact ${site.legalName} for a free consultation and quote on your website, app, e-commerce or AI software project. Reply within one business day.`}
+  pageType="ContactPage"
+  breadcrumbs={[{ name: "Contact", path: "/contact/" }]}
+>
+  <section class="relative overflow-hidden pt-12 pb-16 sm:pt-16">
     <div class="glow -top-24 left-1/3 h-80 w-[32rem] bg-gold-500/20"></div>
     <div class="container-page relative text-center">
       <span class="eyebrow">Contact</span>
       <h1 class="mx-auto mt-6 max-w-2xl text-4xl font-semibold text-white sm:text-5xl">
-        Let's build something <span class="gold-text">together</span>
+        Contact KYK AstroTech — <span class="gold-text">let's build together</span>
       </h1>
       <p class="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/60 sm:text-lg">
         Tell us a bit about your project and we'll get back to you within one business day.
@@ -38,9 +44,21 @@ import { site } from "../data/site";
               @kykastrotech
             </a>
           </li>
+          {site.phone && (
+            <li>
+              <p class="text-white/40">Phone</p>
+              <a href={`tel:${site.phone.replace(/[^+\d]/g, "")}`} class="text-white/80 hover:text-gold-300">{site.phone}</a>
+            </li>
+          )}
+          {site.whatsapp && (
+            <li>
+              <p class="text-white/40">WhatsApp</p>
+              <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener noreferrer" class="text-white/80 hover:text-gold-300">Chat on WhatsApp</a>
+            </li>
+          )}
           <li>
             <p class="text-white/40">Location</p>
-            <p class="text-white/80">Remote-first &middot; India</p>
+            <p class="text-white/80">{site.locationLabel}</p>
           </li>
         </ul>
       </div>
@@ -56,6 +74,7 @@ import { site } from "../data/site";
         -->
         <input type="hidden" name="access_key" value="4a05e66b-461d-4304-938b-734a3751e80a" />
         <input type="hidden" name="subject" value="New inquiry from kykastrotech.com" />
+        <input type="hidden" name="redirect" value="https://kykastrotech.com/thank-you/" />
         <input type="checkbox" name="botcheck" class="hidden" style="display: none" />
 
         <div class="grid gap-5 sm:grid-cols-2">
@@ -67,6 +86,7 @@ import { site } from "../data/site";
               type="text"
               required
               class="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-gold-400/50"
+              autocomplete="name"
               placeholder="Your name"
             />
           </div>
@@ -78,6 +98,7 @@ import { site } from "../data/site";
               type="email"
               required
               class="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-gold-400/50"
+              autocomplete="email"
               placeholder="you@company.com"
             />
           </div>
@@ -90,10 +111,7 @@ import { site } from "../data/site";
             name="service"
             class="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none focus:border-gold-400/50"
           >
-            <option class="bg-ink" value="Web Development">Web Development</option>
-            <option class="bg-ink" value="Mobile App Development">Mobile App Development</option>
-            <option class="bg-ink" value="AI & Software Solutions">AI &amp; Software Solutions</option>
-            <option class="bg-ink" value="IT Support & Maintenance">IT Support &amp; Maintenance</option>
+            {services.map((s) => <option class="bg-ink" value={s.title}>{s.title}</option>)}
             <option class="bg-ink" value="Other">Something else</option>
           </select>
         </div>

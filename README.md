@@ -8,6 +8,15 @@ Home · About · Services · Web Development · Mobile App Development · AI & S
 
 Services live in one data file — [src/data/services.ts](src/data/services.ts) — and `src/pages/services/[slug].astro` generates a static page per service automatically. Company info (email, social links) lives in [src/data/site.ts](src/data/site.ts).
 
+## SEO, AEO & GEO
+
+The site is fully optimised for Google, Bing and AI assistants (ChatGPT, Gemini, Claude, Perplexity).
+See **[SEO-PLAYBOOK.md](SEO-PLAYBOOK.md)** for what's built in and the off-site steps to rank.
+
+Company facts live in `src/data/site.ts`, services in `src/data/services.ts`, FAQs in `src/data/faqs.ts`,
+guides in `src/data/guides.ts` + `src/pages/guides/`. Sitemap, robots.txt, llms.txt and all structured
+data are generated from these files at build time.
+
 ## Commands
 
 | Command           | Action                                       |
@@ -20,7 +29,7 @@ Services live in one data file — [src/data/services.ts](src/data/services.ts) 
 ## Before going live
 
 1. **Contact form** — the form on `/contact` posts to [Web3Forms](https://web3forms.com) (free, no backend needed). Get a free access key there and paste it into the `access_key` hidden field in [src/pages/contact.astro](src/pages/contact.astro). Until you do, the "Email us directly" link on that page still works.
-2. **Domain / URL** — update `url` in [src/data/site.ts](src/data/site.ts) once you have a domain.
+2. **Domain / URL** — `https://kykastrotech.com` is set in both `src/data/site.ts` and `astro.config.mjs`; keep them in sync.
 3. **Favicon / logo** — `public/images/logo-mark.png` and `public/favicon-kyk.png` were cropped from your original logo for small sizes. `public/images/logo.jpg` is the full original, kept for reference/larger use.
 
 ## Deploy for free

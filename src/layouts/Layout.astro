@@ -2,36 +2,124 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
 import { site } from "../data/site";
+import { abs, organization, website, webPage, breadcrumb, type Crumb } from "../lib/schema";
 
 interface Props {
+  /** Page title. The brand is appended automatically unless it's already included. */
   title: string;
   description?: string;
+  /** Social share image path (1200×630). */
+  image?: string;
+  imageAlt?: string;
+  ogType?: "website" | "article";
+  /** Schema.org type for the WebPage node, e.g. "AboutPage", "ContactPage", "CollectionPage". */
+  pageType?: string;
+  /** Extra JSON-LD nodes for this page (Service, FAQPage, Article…). */
+  schema?: Record<string, unknown>[];
+  /** Breadcrumb trail (excluding Home). Renders visually and as BreadcrumbList schema. */
+  breadcrumbs?: Crumb[];
+  noindex?: boolean;
+  datePublished?: string;
+  dateModified?: string;
 }
 
-const { title, description = site.description } = Astro.props;
-const pageTitle = title === site.name ? title : `${title} | ${site.name}`;
+const {
+  title,
+  description = site.description,
+  image = "/og-image.png",
+  imageAlt = `${site.name} — website, app & AI software development company in India`,
+  ogType = "website",
+  pageType,
+  schema = [],
+  breadcrumbs = [],
+  noindex = false,
+  datePublished,
+  dateModified,
+} = Astro.props;
+
+const pageTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
+const path = Astro.url.pathname;
+const canonical = abs(path);
+const imageUrl = abs(image);
+const hasCrumbs = breadcrumbs.length > 0;
+
+const graph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    organization(),
+    website(),
+    webPage({ path, title: pageTitle, description, type: pageType, hasBreadcrumb: hasCrumbs, image: imageUrl, datePublished, dateModified }),
+    ...(hasCrumbs ? [breadcrumb(path, breadcrumbs)] : []),
+    ...schema,
+  ],
+};
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en-IN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/favicon-kyk.png" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#050507" />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
+    <link rel="alternate" hreflang="en-IN" href={canonical} />
+    <link rel="alternate" hreflang="x-default" href={canonical} />
 
-    <meta property="og:type" content="website" />
+    <meta name="author" content={site.legalName} />
+    <meta name="publisher" content={site.legalName} />
+    <meta name="application-name" content={site.name} />
+    <meta name="theme-color" content="#050507" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicon-kyk.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    <link rel="alternate" type="text/plain" title="LLM summary" href="/llms.txt" />
+
+    <!-- Open Graph (Facebook, LinkedIn, WhatsApp, and AI link previews) -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content={site.locale} />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/images/logo-mark.png" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:secure_url" content={imageUrl} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
+    {datePublished && <meta property="article:published_time" content={datePublished} />}
+    {dateModified && <meta property="article:modified_time" content={dateModified} />}
+    {ogType === "article" && <meta property="article:publisher" content={site.linkedin} />}
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+
+    <!--
+      Search engine verification: paste the codes you get from each console here.
+      <meta name="google-site-verification" content="XXXX" />
+      <meta name="msvalidate.01" content="XXXX" />
+      <meta name="yandex-verification" content="XXXX" />
+    -->
+
+    <script type="application/ld+json" set:html={JSON.stringify(graph)} />
   </head>
   <body class="min-h-screen bg-ink">
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-full focus:bg-gold-300 focus:px-4 focus:py-2 focus:text-ink">Skip to content</a>
     <Header />
-    <main>
+    {hasCrumbs && <Breadcrumbs crumbs={breadcrumbs} />}
+    <main id="main">
       <slot />
     </main>
     <Footer />
