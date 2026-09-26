@@ -2,7 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import CTASection from "../components/CTASection.astro";
 import Icon from "../components/Icon.astro";
-import { site } from "../data/site";
+import { site, sameAs } from "../data/site";
+import { services } from "../data/services";
 
 const values = [
   {
@@ -26,15 +27,36 @@ const values = [
     icon: "M4 16l4-4 4 3 8-9m0 0h-5m5 0v5",
   },
 ];
+
+const facts = [
+  { label: "Legal name", value: site.legalName },
+  { label: "Company type", value: "Private Limited Company (India)" },
+  ...(site.cin ? [{ label: "CIN", value: site.cin }] : []),
+  ...(site.foundingDate ? [{ label: "Founded", value: site.foundingDate }] : []),
+  ...(site.founders.length ? [{ label: "Founders", value: site.founders.join(", ") }] : []),
+  { label: "Headquarters", value: site.address.addressLocality ? `${site.address.addressLocality}, ${site.address.addressRegion}, India` : "India (remote-first)" },
+  { label: "Industry", value: "IT services & software development" },
+  { label: "Services", value: services.map((s) => s.title).join(", ") },
+  { label: "Clients served", value: "Startups, SMBs and enterprises in India and worldwide" },
+  { label: "Own products", value: `${site.astroguru.name} — astrology, palm reading & numerology platform` },
+  { label: "Website", value: site.url.replace("https://", "") },
+  { label: "Email", value: site.email },
+  ...(site.phone ? [{ label: "Phone", value: site.phone }] : []),
+];
 ---
 
-<Layout title="About" description={`Learn about ${site.legalName} — our mission, values, and approach to building technology.`}>
-  <section class="relative overflow-hidden pt-20 pb-20 sm:pt-28">
+<Layout
+  title="About KYK AstroTech Private Limited — IT Company in India"
+  description={`About ${site.legalName}: an Indian IT company building websites, mobile apps, e-commerce stores and AI software. Mission, values and company facts.`}
+  pageType="AboutPage"
+  breadcrumbs={[{ name: "About", path: "/about/" }]}
+>
+  <section class="relative overflow-hidden pt-12 pb-20 sm:pt-16">
     <div class="glow -top-24 left-1/3 h-80 w-[32rem] bg-gold-500/20"></div>
     <div class="container-page relative">
       <span class="eyebrow">About Us</span>
       <h1 class="mt-6 max-w-3xl text-4xl font-semibold text-white sm:text-5xl">
-        One team. One vision. <span class="gold-text">Endless possibilities.</span>
+        About KYK AstroTech: <span class="gold-text">one team, one vision.</span>
       </h1>
       <p class="mt-6 max-w-2xl text-base leading-relaxed text-white/60 sm:text-lg">
         {site.legalName} is an IT company built to turn ideas into real, working technology.
@@ -60,6 +82,25 @@ const values = [
           To be a technology partner ambitious teams trust from the first prototype through
           long-term growth — reliable, senior, and genuinely invested in the outcome.
         </p>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="py-16" aria-labelledby="company-facts">
+    <div class="container-page">
+      <div class="glass-card p-8 sm:p-12">
+        <h2 id="company-facts" class="text-2xl font-semibold text-white sm:text-3xl">Company facts</h2>
+        <dl class="mt-8 grid gap-x-10 gap-y-6 text-sm sm:grid-cols-2">
+          {
+            facts.map((f) => (
+              <div class="border-b border-white/5 pb-4">
+                <dt class="text-white/40">{f.label}</dt>
+                <dd class="mt-1 text-white/85">{f.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
       </div>
     </div>
   </section>
@@ -98,7 +139,7 @@ const values = [
             It's how we stay sharp on the same tools we use for clients.
           </p>
         </div>
-        <a href="https://astroguru.online" target="_blank" rel="noopener noreferrer" class="btn-secondary whitespace-nowrap">
+        <a href={site.astroguru.url} target="_blank" rel="noopener" class="btn-secondary whitespace-nowrap">
           See what we're building
         </a>
       </div>

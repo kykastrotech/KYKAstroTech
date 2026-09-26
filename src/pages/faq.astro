@@ -1,0 +1,42 @@
+---
+import Layout from "../layouts/Layout.astro";
+import FAQ from "../components/FAQ.astro";
+import CTASection from "../components/CTASection.astro";
+import { generalFaqs } from "../data/faqs";
+import { services } from "../data/services";
+import { site } from "../data/site";
+import { faqPage } from "../lib/schema";
+
+const serviceFaqs = services.flatMap((s) => s.faqs);
+const all = [...generalFaqs, ...serviceFaqs];
+---
+
+<Layout
+  title="FAQ: Website & App Development Questions"
+  description={`Answers to common questions about ${site.name}: website and app development costs in India, timelines, AI chatbots, SEO, ownership, support and how to get started.`}
+  pageType="FAQPage"
+  breadcrumbs={[{ name: "FAQ", path: "/faq/" }]}
+  schema={[faqPage("/faq/", all)]}
+>
+  <section class="relative overflow-hidden pt-12 pb-4 sm:pt-16">
+    <div class="glow -top-24 left-1/3 h-80 w-[32rem] bg-gold-500/20"></div>
+    <div class="container-page relative text-center">
+      <span class="eyebrow">Help Centre</span>
+      <h1 class="mx-auto mt-6 max-w-3xl text-4xl font-semibold text-white sm:text-5xl">
+        Frequently asked <span class="gold-text">questions</span>
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/60 sm:text-lg">
+        Straight answers about working with {site.name} — pricing, timelines, technology and support.
+      </p>
+    </div>
+  </section>
+
+  <FAQ faqs={generalFaqs} title="About KYK AstroTech" eyebrow="General" id="general" />
+  {
+    services.map((s) => (
+      <FAQ faqs={s.faqs} title={s.title} eyebrow="Service" id={s.slug} />
+    ))
+  }
+
+  <CTASection title="Didn't find your answer?" description="Ask us directly — we reply within one business day." />
+</Layout>

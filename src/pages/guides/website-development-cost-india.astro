@@ -1,0 +1,119 @@
+---
+import GuideLayout from "../../layouts/GuideLayout.astro";
+import { getGuide } from "../../data/guides";
+
+const guide = getGuide("website-development-cost-india");
+
+const faqs = [
+  {
+    q: "What is the cheapest way to get a business website in India?",
+    a: "The cheapest option is a DIY website builder, which costs roughly ₹3,000–₹15,000 per year including a domain and plan. A professionally built simple business website typically starts around ₹15,000 and gives you better speed, SEO and ownership of the code.",
+  },
+  {
+    q: "Is ₹10,000 enough for a website?",
+    a: "₹10,000 can cover a basic one-page or template-based website, but it rarely includes custom design, SEO setup, content writing or ongoing support. For most businesses, a budget of ₹25,000–₹60,000 produces a website that actually generates enquiries.",
+  },
+  {
+    q: "Are there hidden costs after a website is built?",
+    a: "The main recurring costs are the domain (about ₹800–₹1,500 per year), hosting (₹0–₹15,000 per year), premium plugins or themes if used, and optional maintenance (₹2,000–₹15,000 per month). Always ask for these in writing before you start.",
+  },
+  {
+    q: "Should I pay a website developer upfront?",
+    a: "A common and fair structure is 30–50% upfront, a milestone payment after design approval, and the balance at launch. Avoid paying 100% upfront, and make sure the contract states that you own the code, domain and content.",
+  },
+];
+---
+
+<GuideLayout guide={guide} faqs={faqs}>
+  <p>
+    "How much does a website cost?" is the first question almost every business owner asks — and the
+    answers online range from ₹5,000 to ₹50 lakh. This guide breaks down realistic 2026 website
+    development costs in India by type of website, explains what drives the price up or down, and
+    shows you how to budget for the running costs most quotes leave out.
+  </p>
+
+  <h2>Website cost in India by type (2026)</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Type of website</th><th>Typical cost (INR)</th><th>Timeline</th><th>Best for</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Simple business website (5–7 pages)</td><td>₹15,000 – ₹50,000</td><td>1–3 weeks</td><td>Local businesses, clinics, consultants, freelancers</td></tr>
+        <tr><td>CMS business website (10–30 pages, blog)</td><td>₹40,000 – ₹1,50,000</td><td>3–6 weeks</td><td>Growing SMBs that publish content and need SEO</td></tr>
+        <tr><td>Landing page (single, conversion-focused)</td><td>₹8,000 – ₹40,000</td><td>1–2 weeks</td><td>Ad campaigns, product launches, events</td></tr>
+        <tr><td>E-commerce store (Shopify / WooCommerce)</td><td>₹75,000 – ₹2,50,000</td><td>3–6 weeks</td><td>D2C brands and retailers going online</td></tr>
+        <tr><td>Custom e-commerce platform</td><td>₹3,00,000 – ₹10,00,000+</td><td>8–16 weeks</td><td>Large catalogues, multi-vendor, custom logic</td></tr>
+        <tr><td>Custom web application / portal</td><td>₹2,00,000 – ₹15,00,000+</td><td>6–16 weeks</td><td>SaaS, booking systems, dashboards, internal tools</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">
+    These are typical market ranges for professional agencies in India. Freelancers may be cheaper;
+    large enterprise agencies can be significantly more expensive. The only way to get an exact number
+    is a written, itemised quote for your specific scope.
+  </p>
+
+  <h2>What affects the cost of a website?</h2>
+  <h3>1. Number of unique page designs</h3>
+  <p>
+    Ten pages that share one layout cost far less than ten pages that each need a custom design.
+    Most small-business sites need only 3–5 unique templates.
+  </p>
+  <h3>2. Custom features and integrations</h3>
+  <p>
+    Booking calendars, payment gateways (Razorpay, Stripe, UPI), user logins, CRM connections, multi-language
+    support and AI chatbots each add development and testing time.
+  </p>
+  <h3>3. Template vs. custom design</h3>
+  <p>
+    A customised template is faster and cheaper. A fully custom design costs more but makes your brand
+    stand out and is usually faster-loading because there is no unused template code.
+  </p>
+  <h3>4. Content creation</h3>
+  <p>
+    Copywriting, product photography and product data entry are often the hidden budget items. If you
+    provide finished text and images, costs drop noticeably.
+  </p>
+  <h3>5. SEO and performance</h3>
+  <p>
+    A website that isn't found on Google is a brochure nobody reads. Technical SEO — fast load times,
+    structured data, a sitemap, clean URLs and Search Console setup — should be included in any
+    professional build, not sold later as an extra.
+  </p>
+
+  <h2>Ongoing yearly costs</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Item</th><th>Typical cost</th></tr></thead>
+      <tbody>
+        <tr><td>Domain name (.com / .in)</td><td>₹800 – ₹1,500 per year</td></tr>
+        <tr><td>Hosting</td><td>₹0 (static sites on free CDNs) – ₹15,000 per year</td></tr>
+        <tr><td>SSL certificate</td><td>Usually free (Let's Encrypt / host-provided)</td></tr>
+        <tr><td>Business email</td><td>₹1,500 – ₹2,500 per user per year</td></tr>
+        <tr><td>Maintenance &amp; updates</td><td>₹2,000 – ₹15,000 per month (optional)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>DIY website builder vs. hiring a developer</h2>
+  <p>
+    Builders such as Wix or Squarespace are fine for a very simple online presence. You'll outgrow them
+    if you need strong SEO, fast performance, custom features, or full ownership of your site. A
+    professional developer costs more upfront but typically delivers a faster, better-ranking website you
+    fully own.
+  </p>
+
+  <h2>How to get an accurate website quote</h2>
+  <ol>
+    <li>Write down the goal of the website (calls, bookings, online sales, credibility).</li>
+    <li>List the pages you need and 2–3 websites you like.</li>
+    <li>Note any features: payments, booking, login, blog, multiple languages.</li>
+    <li>Ask for a fixed, itemised quote that includes design, development, SEO setup, hosting and launch.</li>
+    <li>Confirm in writing that you will own the code, domain and content.</li>
+  </ol>
+  <p>
+    Want a number for your project? <a href="/contact/">Contact KYK AstroTech</a> for a free consultation
+    and a fixed quote, or read about our <a href="/services/web-development/">website development services</a> and <a href="/services/ecommerce-development/">e-commerce development</a>.
+  </p>
+</GuideLayout>

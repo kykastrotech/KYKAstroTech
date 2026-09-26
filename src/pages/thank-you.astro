@@ -1,0 +1,21 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../data/site";
+---
+
+<Layout title="Thank You" description="Thanks for contacting KYK AstroTech." noindex>
+  <section class="relative overflow-hidden py-32">
+    <div class="glow -top-24 left-1/2 h-80 w-[32rem] -translate-x-1/2 bg-gold-500/20"></div>
+    <div class="container-page relative text-center">
+      <span class="eyebrow">Message received</span>
+      <h1 class="mx-auto mt-6 max-w-2xl text-4xl font-semibold text-white sm:text-5xl">Thank you — <span class="gold-text">we'll be in touch</span></h1>
+      <p class="mx-auto mt-6 max-w-xl text-base text-white/60">
+        We usually reply within one business day. For anything urgent, email <a href={`mailto:${site.email}`} class="text-gold-300">{site.email}</a>.
+      </p>
+      <div class="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+        <a href="/" class="btn-primary">Back to home</a>
+        <a href="/guides/" class="btn-secondary">Read our guides</a>
+      </div>
+    </div>
+  </section>
+</Layout>

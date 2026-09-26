@@ -2,15 +2,22 @@
 import Layout from "../layouts/Layout.astro";
 import CTASection from "../components/CTASection.astro";
 import { site } from "../data/site";
+import { astroguruNode } from "../lib/schema";
 ---
 
-<Layout title="Portfolio" description={`Selected work from ${site.legalName}, including our in-house product AstroGuru.`}>
-  <section class="relative overflow-hidden pt-20 pb-16 sm:pt-28">
+<Layout
+  title="Portfolio & Case Studies"
+  description={`Portfolio of ${site.legalName}: websites, apps and software we build — including AstroGuru, our in-house astrology, palm reading & numerology platform.`}
+  pageType="CollectionPage"
+  breadcrumbs={[{ name: "Portfolio", path: "/portfolio/" }]}
+  schema={[astroguruNode()]}
+>
+  <section class="relative overflow-hidden pt-12 pb-16 sm:pt-16">
     <div class="glow -top-24 left-1/4 h-80 w-[32rem] bg-gold-500/20"></div>
     <div class="container-page relative">
       <span class="eyebrow">Our Work</span>
       <h1 class="mt-6 max-w-2xl text-4xl font-semibold text-white sm:text-5xl">
-        What we're <span class="gold-text">building</span>
+        Our work: <span class="gold-text">what we're building</span>
       </h1>
       <p class="mt-6 max-w-2xl text-base leading-relaxed text-white/60 sm:text-lg">
         We're a young team, and we'd rather show you real, active work than pad this page with
@@ -39,9 +46,9 @@ import { site } from "../data/site";
               ))}
             </div>
             <a
-              href="https://astroguru.online"
+              href={site.astroguru.url}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               class="btn-primary mt-8 inline-flex"
             >
               Visit astroguru.online
@@ -65,7 +72,7 @@ import { site } from "../data/site";
           As we ship client work, we'll feature it here with real outcomes — not stock photos.
           If you want to be one of our first featured partners, let's talk.
         </p>
-        <a href="/contact" class="btn-secondary mt-8 inline-flex">Become a Featured Partner</a>
+        <a href="/contact/" class="btn-secondary mt-8 inline-flex">Become a Featured Partner</a>
       </div>
     </div>
   </section>

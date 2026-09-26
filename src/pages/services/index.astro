@@ -2,30 +2,54 @@
 import Layout from "../../layouts/Layout.astro";
 import ServiceCard from "../../components/ServiceCard.astro";
 import CTASection from "../../components/CTASection.astro";
+import FAQ from "../../components/FAQ.astro";
 import { services } from "../../data/services";
 import { site } from "../../data/site";
+import { abs, faqPage } from "../../lib/schema";
+
+const faqs = services.map((s) => s.faqs[0]);
 ---
 
-<Layout title="Services" description={`Explore ${site.legalName}'s services — web development, mobile apps, AI & software solutions, and IT support.`}>
-  <section class="relative overflow-hidden pt-20 pb-16 sm:pt-28">
+<Layout
+  title="IT Services: Web, App & AI Development"
+  description={`${site.name} services: website development, Android & iOS apps, e-commerce, UI/UX design, AI software and IT maintenance for businesses in India & worldwide.`}
+  pageType="CollectionPage"
+  breadcrumbs={[{ name: "Services", path: "/services/" }]}
+  schema={[
+    {
+      "@type": "ItemList",
+      "@id": abs("/services/#list"),
+      itemListElement: services.map((s, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: abs(`/services/${s.slug}/`),
+        name: s.heading,
+      })),
+    },
+    faqPage("/services/", faqs),
+  ]}
+>
+  <section class="relative overflow-hidden pt-12 pb-16 sm:pt-16">
     <div class="glow -top-24 right-1/4 h-80 w-[32rem] bg-gold-500/20"></div>
     <div class="container-page relative text-center">
       <span class="eyebrow">What We Do</span>
-      <h1 class="mx-auto mt-6 max-w-2xl text-4xl font-semibold text-white sm:text-5xl">
-        Services built around your <span class="gold-text">growth</span>
+      <h1 class="mx-auto mt-6 max-w-3xl text-4xl font-semibold text-white sm:text-5xl">
+        Web, app &amp; software development services built around your <span class="gold-text">growth</span>
       </h1>
-      <p class="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/60 sm:text-lg">
-        Four core disciplines, delivered by one senior team — so your product, app, and
+      <p class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/60 sm:text-lg">
+        Six core disciplines delivered by one senior team — so your website, app, store and
         infrastructure all feel like they were built together, because they were.
       </p>
     </div>
   </section>
 
   <section class="py-16">
-    <div class="container-page grid gap-6 sm:grid-cols-2">
+    <div class="container-page grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {services.map((service) => <ServiceCard service={service} />)}
     </div>
   </section>
+
+  <FAQ faqs={faqs} title="Pricing & timelines at a glance" />
 
   <CTASection />
 </Layout>

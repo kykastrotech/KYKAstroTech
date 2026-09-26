@@ -1,0 +1,131 @@
+---
+import GuideLayout from "../../layouts/GuideLayout.astro";
+import { getGuide } from "../../data/guides";
+import { abs } from "../../lib/schema";
+
+const guide = getGuide("how-to-get-a-website-for-your-business");
+
+const faqs = [
+  {
+    q: "How do I choose the right website development company?",
+    a: "Look at their live work and check how fast those sites load, ask for a fixed itemised quote, confirm SEO and mobile optimisation are included, make sure you will own the code and domain, and prefer a team that offers support after launch. Be cautious of very low prices with no written scope.",
+  },
+  {
+    q: "Do I need a website if I already have Instagram or a Google Business Profile?",
+    a: "Yes. Social profiles and Google Business Profile help, but a website is the asset you fully own. It ranks on Google for your services, is what AI assistants read to recommend businesses, and converts visitors with enquiry forms, bookings or payments.",
+  },
+  {
+    q: "What pages should a small business website have?",
+    a: "Most small business websites need a Home page, About page, a page for each main service, a Portfolio or Reviews page, and a Contact page with a form, phone number, WhatsApp link and map. A blog or guides section helps with SEO over time.",
+  },
+  {
+    q: "How can my new website appear in Google and ChatGPT results?",
+    a: "Make sure the site is fast, mobile-friendly and has clear pages for each service; submit the sitemap in Google Search Console and Bing Webmaster Tools; add Schema.org structured data; set up Google Business Profile; publish helpful answer-style content; and earn mentions and reviews on trusted sites.",
+  },
+];
+
+const howTo = {
+  "@type": "HowTo",
+  "@id": abs(`/guides/${guide.slug}/#howto`),
+  name: "How to create a website for your business",
+  description: guide.description,
+  totalTime: "P4W",
+  estimatedCost: { "@type": "MonetaryAmount", currency: "INR", minValue: 15000, maxValue: 150000 },
+  step: [
+    "Define your goal and target customers",
+    "Register a domain name",
+    "Plan your pages and content",
+    "Choose a DIY builder or a professional developer",
+    "Get a fixed quote and timeline",
+    "Review and approve the design",
+    "Check SEO, speed and mobile-friendliness",
+    "Launch and connect Google tools",
+  ].map((name, i) => ({ "@type": "HowToStep", position: i + 1, name, url: abs(`/guides/${guide.slug}/#step-${i + 1}`) })),
+};
+---
+
+<GuideLayout guide={guide} faqs={faqs} schema={[howTo]}>
+  <p>
+    If you've ever typed "I want to create a website for my business" into Google or asked an AI
+    assistant, you've probably got a flood of confusing options. This guide walks you through the whole
+    process in eight clear steps — from idea to a live website that brings in customers.
+  </p>
+
+  <h2 id="step-1">Step 1: Define your goal and target customers</h2>
+  <p>
+    Decide the one main thing your website should do: get phone calls, take bookings, sell products, or
+    build credibility with larger clients. Then describe who your ideal customer is and what they search
+    for. Every later decision follows from this.
+  </p>
+
+  <h2 id="step-2">Step 2: Register a domain name</h2>
+  <p>
+    Choose something short, easy to spell and matching your brand. For Indian businesses, <strong>.com</strong>
+    and <strong>.in</strong> are the most trusted. A domain costs about ₹800–₹1,500 a year. Register it in
+    your own name and account — not your developer's.
+  </p>
+
+  <h2 id="step-3">Step 3: Plan your pages and content</h2>
+  <ul>
+    <li><strong>Home</strong> — what you do, for whom, and a clear call to action</li>
+    <li><strong>About</strong> — your story, team and why customers should trust you</li>
+    <li><strong>Services</strong> — ideally one page per main service (this is what ranks on Google)</li>
+    <li><strong>Portfolio / Reviews</strong> — proof that you deliver</li>
+    <li><strong>Contact</strong> — form, phone, WhatsApp, email and location</li>
+  </ul>
+
+  <h2 id="step-4">Step 4: Choose a DIY builder or a professional developer</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>DIY website builder</th><th>Professional developer</th></tr></thead>
+      <tbody>
+        <tr><td>Upfront cost</td><td>Low (₹3,000–₹15,000/yr)</td><td>₹15,000–₹1,50,000 one-time</td></tr>
+        <tr><td>Your time</td><td>High</td><td>Low</td></tr>
+        <tr><td>Speed &amp; SEO</td><td>Limited</td><td>Fully optimised</td></tr>
+        <tr><td>Custom features</td><td>Limited to apps/plugins</td><td>Anything you need</td></tr>
+        <tr><td>Ownership</td><td>Locked to the platform</td><td>You own the code</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="step-5">Step 5: Get a fixed quote and timeline</h2>
+  <p>
+    Ask two or three companies for an itemised quote. A good quote lists the pages, features, design
+    rounds, SEO setup, hosting, launch and post-launch support, with milestone-based payments. See our <a href="/guides/website-development-cost-india/">website cost guide for India</a> for realistic ranges.
+  </p>
+
+  <h2 id="step-6">Step 6: Review and approve the design</h2>
+  <p>
+    You should see the design before development starts. Check it on your phone first — most of your
+    visitors will be on mobile. Make sure your call to action is obvious on every page.
+  </p>
+
+  <h2 id="step-7">Step 7: Check SEO, speed and mobile-friendliness</h2>
+  <ul>
+    <li>Loads in under ~2 seconds on mobile (test with Google PageSpeed Insights)</li>
+    <li>Unique title and description on every page</li>
+    <li>XML sitemap, robots.txt and Schema.org structured data</li>
+    <li>HTTPS enabled, images compressed, no broken links</li>
+  </ul>
+
+  <h2 id="step-8">Step 8: Launch and connect Google tools</h2>
+  <p>
+    After launch, verify your site in <strong>Google Search Console</strong> and <strong>Bing Webmaster
+    Tools</strong> and submit your sitemap, create or update your <strong>Google Business Profile</strong>,
+    add analytics, and ask happy customers for reviews. Keep adding helpful content — that's what keeps
+    you ranking and gets you recommended by AI assistants.
+  </p>
+
+  <h2>Common mistakes to avoid</h2>
+  <ul>
+    <li>Letting a developer register the domain in their own name</li>
+    <li>Choosing on price alone without a written scope</li>
+    <li>Forgetting mobile users and page speed</li>
+    <li>No clear call to action or contact method</li>
+    <li>Launching and never updating the site again</li>
+  </ul>
+
+  <p>
+    Ready to get your website built? KYK AstroTech designs and develops fast, SEO-ready <a href="/services/web-development/">business websites</a> — <a href="/contact/">get a free quote</a>.
+  </p>
+</GuideLayout>

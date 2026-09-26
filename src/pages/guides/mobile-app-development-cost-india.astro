@@ -1,0 +1,92 @@
+---
+import GuideLayout from "../../layouts/GuideLayout.astro";
+import { getGuide } from "../../data/guides";
+
+const guide = getGuide("mobile-app-development-cost-india");
+
+const faqs = [
+  {
+    q: "How much does an app like Swiggy, Uber or Ola cost to build in India?",
+    a: "A first version of an on-demand app with customer, partner and admin apps, real-time tracking and payments typically costs ₹15,00,000–₹50,00,000 in India. Starting with a focused MVP of the core flow can reduce the initial cost to roughly ₹6,00,000–₹12,00,000.",
+  },
+  {
+    q: "Is Flutter or React Native cheaper?",
+    a: "Both cost roughly the same and both save 30–40% compared with building separate native Android and iOS apps. The better choice depends on your app's requirements and your team's existing skills.",
+  },
+  {
+    q: "How much does it cost to maintain an app every year?",
+    a: "Plan for about 15–20% of the original development cost per year for maintenance, OS updates, bug fixes and small improvements, plus server and third-party service costs.",
+  },
+  {
+    q: "Can I build an Android app first and iOS later?",
+    a: "Yes, and in India many startups launch on Android first because it has the majority of users. With a cross-platform framework like Flutter, adding iOS later is fast because most of the code is shared.",
+  },
+];
+---
+
+<GuideLayout guide={guide} faqs={faqs}>
+  <p>
+    Mobile app budgets vary more than almost anything else in software — the same "simple app" idea can
+    be quoted at ₹80,000 or ₹40 lakh. This guide explains realistic 2026 app development costs in India,
+    what actually drives the price, and how to launch without overspending.
+  </p>
+
+  <h2>App development cost in India by complexity (2026)</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>App type</th><th>Typical cost (INR)</th><th>Timeline</th><th>Examples</th></tr></thead>
+      <tbody>
+        <tr><td>Simple app / MVP</td><td>₹1,50,000 – ₹5,00,000</td><td>8–12 weeks</td><td>Catalogue app, booking app, basic utility, internal tool</td></tr>
+        <tr><td>Mid-complexity business app</td><td>₹5,00,000 – ₹15,00,000</td><td>3–5 months</td><td>E-commerce app, fitness app, learning app with payments</td></tr>
+        <tr><td>Complex platform</td><td>₹15,00,000 – ₹50,00,000+</td><td>5–9 months</td><td>Marketplace, on-demand delivery, fintech, social app</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">
+    Ranges reflect typical professional agency pricing in India in 2026. Each additional platform, user
+    role (customer, vendor, admin) and third-party integration moves a project up the range.
+  </p>
+
+  <h2>What drives app development cost?</h2>
+  <h3>Features and user roles</h3>
+  <p>
+    A single-user app is far simpler than a two-sided marketplace with customers, service providers and
+    an admin panel. Every role is effectively its own product.
+  </p>
+  <h3>Platforms: native vs. cross-platform</h3>
+  <p>
+    Building separate native apps in Kotlin (Android) and Swift (iOS) means two codebases. Cross-platform
+    frameworks like <strong>Flutter</strong> and <strong>React Native</strong> share one codebase across
+    both platforms and typically cut cost by 30–40% while still feeling native.
+  </p>
+  <h3>Backend, admin panel and integrations</h3>
+  <p>
+    Most apps need a server, database and admin dashboard. Payments (Razorpay, Stripe, UPI), maps,
+    chat, video, push notifications and AI features all add scope.
+  </p>
+  <h3>Design quality</h3>
+  <p>
+    Polished UI/UX increases upfront cost but directly improves ratings, retention and conversion —
+    usually the best money spent in an app budget.
+  </p>
+
+  <h2>Hidden and ongoing costs</h2>
+  <ul>
+    <li><strong>Store fees:</strong> Google Play one-time US$25; Apple Developer Program US$99 per year.</li>
+    <li><strong>Hosting and servers:</strong> from a few hundred rupees a month at launch, growing with users.</li>
+    <li><strong>Third-party services:</strong> SMS/OTP, maps, email and AI API usage.</li>
+    <li><strong>Maintenance:</strong> roughly 15–20% of the build cost per year for OS updates and fixes.</li>
+  </ul>
+
+  <h2>How to reduce app development cost</h2>
+  <ol>
+    <li><strong>Start with an MVP</strong> — build only the core flow that proves your idea.</li>
+    <li><strong>Go cross-platform</strong> with Flutter or React Native unless you truly need native.</li>
+    <li><strong>Prototype first</strong> — clickable designs catch expensive mistakes before code is written.</li>
+    <li><strong>Use proven services</strong> for auth, payments and notifications instead of building them.</li>
+    <li><strong>Get a fixed-scope quote</strong> with clear milestones.</li>
+  </ol>
+  <p>
+    Planning an app? Explore our <a href="/services/mobile-app-development/">mobile app development services</a> and <a href="/services/ui-ux-design/">UI/UX design</a>, or <a href="/contact/">request a free estimate</a> from KYK AstroTech.
+  </p>
+</GuideLayout>

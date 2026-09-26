@@ -1,5 +1,6 @@
 ---
-import { navLinks, site } from "../data/site";
+import { footerLinks, site } from "../data/site";
+import { guides } from "../data/guides";
 import { services } from "../data/services";
 
 const year = new Date().getFullYear();
@@ -9,12 +10,14 @@ const year = new Date().getFullYear();
   <div class="container-page grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-4">
     <div class="sm:col-span-2 lg:col-span-1">
       <a href="/" class="flex items-center gap-3">
-        <img src="/images/logo-mark.png" alt={site.name} class="h-9 w-9 rounded-lg object-contain" />
+        <img src="/images/logo-mark.png" alt={`${site.name} logo`} width="36" height="36" loading="lazy" class="h-9 w-9 rounded-lg object-contain" />
         <span class="font-display text-base font-semibold text-white">
           KYK <span class="gold-text">AstroTech</span>
         </span>
       </a>
-      <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/60">{site.tagline}</p>
+      <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
+        {site.legalName} — website, mobile app, e-commerce and AI software development company in India.
+      </p>
       <div class="mt-6 flex gap-3">
         <a
           href={site.linkedin}
@@ -57,7 +60,7 @@ const year = new Date().getFullYear();
       <h3 class="text-sm font-semibold tracking-wide text-white">Company</h3>
       <ul class="mt-4 space-y-3">
         {
-          navLinks.map((link) => (
+          footerLinks.map((link) => (
             <li>
               <a href={link.href} class="text-sm text-white/60 transition hover:text-gold-300">
                 {link.label}
@@ -74,7 +77,7 @@ const year = new Date().getFullYear();
         {
           services.map((service) => (
             <li>
-              <a href={`/services/${service.slug}`} class="text-sm text-white/60 transition hover:text-gold-300">
+              <a href={`/services/${service.slug}/`} class="text-sm text-white/60 transition hover:text-gold-300">
                 {service.title}
               </a>
             </li>
@@ -89,16 +92,34 @@ const year = new Date().getFullYear();
         <li>
           <a href={`mailto:${site.email}`} class="transition hover:text-gold-300">{site.email}</a>
         </li>
-        <li>Remote-first &middot; India</li>
+        {site.phone && (
+          <li>
+            <a href={`tel:${site.phone.replace(/[^+\d]/g, "")}`} class="transition hover:text-gold-300">{site.phone}</a>
+          </li>
+        )}
+        {site.whatsapp && (
+          <li>
+            <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener noreferrer" class="transition hover:text-gold-300">WhatsApp us</a>
+          </li>
+        )}
+        <li>{site.locationLabel}</li>
       </ul>
-      <a href="/contact" class="btn-secondary mt-5 w-full">Start a Project</a>
+      <h3 class="mt-8 text-sm font-semibold tracking-wide text-white">Guides</h3>
+      <ul class="mt-4 space-y-3">
+        {guides.map((g) => (
+          <li>
+            <a href={`/guides/${g.slug}/`} class="text-sm text-white/60 transition hover:text-gold-300">{g.seoTitle.replace(/ \(.*\)$/, "")}</a>
+          </li>
+        ))}
+      </ul>
+      <a href="/contact/" class="btn-secondary mt-5 w-full">Start a Project</a>
     </div>
   </div>
 
   <div class="border-t border-white/5 py-6">
     <div class="container-page flex flex-col items-center justify-between gap-3 text-xs text-white/40 sm:flex-row">
-      <p>&copy; {year} {site.legalName}. All rights reserved.</p>
-      <p>Designed &amp; built by the KYK AstroTech team.</p>
+      <p>&copy; {year} {site.legalName}{site.cin && ` · CIN ${site.cin}`}. All rights reserved.</p>
+      <p><a href="/sitemap.xml" class="hover:text-gold-300">Sitemap</a> · Designed &amp; built by the KYK AstroTech team.</p>
     </div>
   </div>
 </footer>

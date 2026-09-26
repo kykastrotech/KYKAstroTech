@@ -79,3 +79,53 @@
     @apply pointer-events-none absolute rounded-full blur-[120px];
   }
 }
+
+/* Long-form article typography for /guides/ */
+@layer components {
+  .prose-kyk {
+    @apply text-base leading-relaxed text-white/75;
+  }
+  .prose-kyk h2 {
+    @apply mt-14 mb-4 text-2xl font-semibold text-white sm:text-3xl;
+  }
+  .prose-kyk h3 {
+    @apply mt-8 mb-3 text-lg font-semibold text-white sm:text-xl;
+  }
+  .prose-kyk p {
+    @apply my-4;
+  }
+  .prose-kyk ul,
+  .prose-kyk ol {
+    @apply my-4 space-y-2 pl-6;
+  }
+  .prose-kyk ul {
+    @apply list-disc;
+  }
+  .prose-kyk ol {
+    @apply list-decimal;
+  }
+  .prose-kyk li::marker {
+    @apply text-gold-400;
+  }
+  .prose-kyk a {
+    @apply text-gold-300 underline decoration-gold-400/40 underline-offset-2 hover:decoration-gold-300;
+  }
+  .prose-kyk strong {
+    @apply text-white;
+  }
+  .prose-kyk .table-wrap {
+    @apply my-6 overflow-x-auto rounded-xl border border-white/10;
+  }
+  .prose-kyk table {
+    @apply w-full border-collapse text-left text-sm;
+  }
+  .prose-kyk th {
+    @apply bg-white/[0.04] px-4 py-3 font-semibold text-white;
+  }
+  .prose-kyk td {
+    @apply border-t border-white/10 px-4 py-3 align-top;
+  }
+  .prose-kyk .note {
+    @apply my-6 rounded-xl border border-gold-400/25 bg-gold-400/5 p-5 text-sm;
+  }
+}
